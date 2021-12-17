@@ -1,7 +1,4 @@
-def valid_parentheses(string):
-    lst = []
-    for i, val in enumerate(string):
-        if val == '(' or val == ')':
-            lst.append((i, val))
-    print(lst)
-print(valid_parentheses("()(())test"))
+import os
+
+print(os.path.abspath(__file__))
+print(os.path.abspath(os.path.dirname(__file__)))
