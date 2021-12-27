@@ -3,7 +3,7 @@ import time
 import unittest
 from selenium.webdriver.common.by import By
 
-class MainFunction():
+class MainClass():
 
     def __init__(self, link):
         self.link = link
@@ -30,14 +30,14 @@ class MainFunction():
 class Test(unittest.TestCase):
 
     def test_link_1(self):
-        test_one = MainFunction('http://suninjuly.github.io/registration1.html')
+        test_one = MainClass('http://suninjuly.github.io/registration1.html')
         test_one.main_function()
         welcome_text = test_one.browser.find_element(By.TAG_NAME, "h1").text
         self.assertEqual("Congratulations! You have successfully registered!", welcome_text, 'NoSuchElementException')
         test_one.quit()
 
     def test_link_2(self):
-        test_two = MainFunction('http://suninjuly.github.io/registration2.html')
+        test_two = MainClass('http://suninjuly.github.io/registration2.html')
         test_two.main_function()
         welcome_text = test_two.browser.find_element(By.TAG_NAME, "h1").text
         #self.assertEqual("Congratulations! You have successfully registered!", welcome_text, 'NoSuchElementException')
