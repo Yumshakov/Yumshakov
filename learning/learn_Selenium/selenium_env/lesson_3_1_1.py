@@ -3,6 +3,7 @@ import time
 import unittest
 from selenium.webdriver.common.by import By
 
+
 class MainClass():
 
     def __init__(self, link):
@@ -21,10 +22,8 @@ class MainClass():
 
         button = self.browser.find_element(By.CSS_SELECTOR, "button.btn")
         button.click()
-        time.sleep(1)
 
     def quit(self):
-        time.sleep(2)
         self.browser.quit()
 
 class Test(unittest.TestCase):
