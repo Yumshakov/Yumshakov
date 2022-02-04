@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    {% if title %}
+        <title>Flask - {{title}}</title>
+    {% else %}
+        <title> Flask </title>
+    {% endif %}
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    {% block mainmenu %}
+<ul>
+    {% for m in menu %}
+    <li>{{m}}</li>
+    {% endfor %}
+</ul>
+    {% endblock mainmenu %}
+    {% if title %}
+    <h1>Flask - {{title}}</h1>
+    {% else %}
+    <h1>Flask</h1>
+    {% endif %}
+{% endblock %}
+</body>
+</html>
