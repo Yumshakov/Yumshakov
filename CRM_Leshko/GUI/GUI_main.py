@@ -1,7 +1,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QWidget, \
-    QLabel, QComboBox, QPushButton, QMainWindow, QGridLayout, QVBoxLayout, QTableWidget, QSizePolicy
+    QLabel, QComboBox, QPushButton, QMainWindow, QGridLayout, QVBoxLayout, QTableWidget, QHeaderView
 
 
 class MainWindow(QMainWindow):
@@ -22,10 +22,16 @@ class MainWindow(QMainWindow):
         btn_layout.addWidget(btn_save)
         btn_layout.addWidget(btn_company)
 
+
         table_base = QTableWidget(15, 4)
         table_base.setHorizontalHeaderLabels(['Компании', 'Телефон', 'Вид', 'Цена'])
-       # table_base.setSizePolicy(QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding))
+        table_base.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
+        combo_box_in_table = QComboBox()
+        combo_box_in_table.addItems(['Картон', 'Бумага', 'Пленка', 'Архив', 'Другое'])
+
+        for i in range(15):
+            table_base.setCellWidget(i, 2, combo_box_in_table)
 
 
         main_layout = QGridLayout()
@@ -33,6 +39,8 @@ class MainWindow(QMainWindow):
         main_layout.addWidget(btn_filter, 0, 1, alignment=Qt.AlignRight)
         main_layout.addLayout(btn_layout, 2, 0, alignment=Qt.AlignTop)
         main_layout.addWidget(table_base, 2, 1)
+
+
 
         widget = QWidget()
         widget.setLayout(main_layout)
