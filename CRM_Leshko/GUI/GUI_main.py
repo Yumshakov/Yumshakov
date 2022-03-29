@@ -10,7 +10,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('Сбор Втор')
         self.setGeometry(200, 100, 1000, 600)
         self.setMinimumSize(1000, 600)
-
+        self.style()
         btn_layout = QVBoxLayout()
 
         btn_filter = QPushButton()
@@ -27,12 +27,11 @@ class MainWindow(QMainWindow):
         table_base.setHorizontalHeaderLabels(['Компании', 'Телефон', 'Вид', 'Цена'])
         table_base.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-        combo_box_in_table = QComboBox()
-        combo_box_in_table.addItems(['Картон', 'Бумага', 'Пленка', 'Архив', 'Другое'])
-
         for i in range(15):
+            combo_box_in_table = QComboBox()
+            combo_box_in_table.addItems(['','Картон', 'Бумага', 'Пленка', 'Архив', 'Другое'])
             table_base.setCellWidget(i, 2, combo_box_in_table)
-
+            combo_box_in_table.setEditable(True)
 
         main_layout = QGridLayout()
 
