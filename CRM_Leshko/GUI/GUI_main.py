@@ -1,8 +1,9 @@
+import sys
+
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QWidget, \
     QLabel, QComboBox, QPushButton, QMainWindow, QGridLayout, QVBoxLayout, QTableWidget, QHeaderView
-
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -33,6 +34,7 @@ class MainWindow(QMainWindow):
             table_base.setCellWidget(i, 2, combo_box_in_table)
             combo_box_in_table.setEditable(True)
 
+
         main_layout = QGridLayout()
 
         main_layout.addWidget(btn_filter, 0, 1, alignment=Qt.AlignRight)
@@ -47,7 +49,7 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == '__main__':
-   app = QApplication([])
+   app = QApplication(sys.argv)
    window = MainWindow()
    window.show()
-   app.exec_()
+   sys.exit(app.exec_())
