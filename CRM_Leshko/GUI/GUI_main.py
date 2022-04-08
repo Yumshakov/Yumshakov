@@ -1,9 +1,8 @@
 import sys
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QWidget, \
-    QLabel, QComboBox, QPushButton, QMainWindow, QGridLayout, QVBoxLayout, QTableWidget, QHeaderView
+from PyQt5.QtCore import Qt, QRegExp
+from PyQt5.QtGui import QIcon, QRegExpValidator
+from PyQt5.QtWidgets import *
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -12,6 +11,9 @@ class MainWindow(QMainWindow):
         self.setGeometry(200, 100, 1000, 600)
         self.setMinimumSize(1000, 600)
         self.style()
+
+
+
         btn_layout = QVBoxLayout()
 
         btn_filter = QPushButton()
@@ -19,13 +21,15 @@ class MainWindow(QMainWindow):
         btn_filter.setFixedSize(20, 20)
         btn_save = QPushButton('Сохранить')
         btn_company = QPushButton('Справочник компаний')
-
+        btn_company.clicked.connect(self.create_enterprise)
         btn_layout.addWidget(btn_save)
         btn_layout.addWidget(btn_company)
 
 
+
         table_base = QTableWidget(15, 4)
         table_base.setHorizontalHeaderLabels(['Компании', 'Телефон', 'Вид', 'Цена'])
+        # Stretched the table over the entire cell space
         table_base.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
         for i in range(15):
@@ -46,6 +50,34 @@ class MainWindow(QMainWindow):
         widget = QWidget()
         widget.setLayout(main_layout)
         self.setCentralWidget(widget)
+
+    def create_enterprise(self):
+        enterprise_window = QDialog(self)
+        enterprise_window.resize(300, 120)
+        enterprise_window.setWindowTitle('Создание компании')
+
+        name_label_enterprice = QLabel('Название:', enterprise_window)
+        name_label_enterprice.move(20,20)
+
+
+        name_enterprice = QLineEdit(enterprise_window)
+        name_enterprice.move(100, 15)
+        validator = QRegExpValidator(QRegExp('[А-Яа-я]*'))
+        name_enterprice.setValidator(validator)
+
+        tel_label_enterprice = QLabel('Телефон:', enterprise_window)
+        tel_label_enterprice.move(20, 50)
+        tel_enterprise = QLineEdit(enterprise_window)
+        tel_enterprise.move(100, 45)
+        tel_enterprise.setInputMask('+7 (999)-999-99-99; ')
+
+        people_lable_enterprice = QLabel('ЛПР:', enterprise_window)
+        people_lable_enterprice.move(20, 80)
+        people_enterprice = QLineEdit(enterprise_window)
+        people_enterprice.move(100, 75)
+        people_enterprice.setValidator(validator)
+
+        enterprise_window.show()
 
 
 if __name__ == '__main__':
