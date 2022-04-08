@@ -12,7 +12,7 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template('about.html', title='about')
+    return render_template('about.html', title='about', menu=menu)
 
 
 if __name__ == '__main__':

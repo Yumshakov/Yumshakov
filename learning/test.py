@@ -1,15 +1,13 @@
-import sys
-from functools import cmp_to_key
+from glob import glob
+filename_list = glob('*.in')
+with open(filename_list[0]) as f:
+    N, lst = f.readlines()
+    lst = sorted(list(map(int, lst.split())))
+N = int(N)
+a = [0] * (N+1)
+a[1] = 10**5
+for k in range(2, N+1):
+    a[k] = min(a[k - 1], a[k - 2]) + lst[k-1] - lst[k-2]
 
-def cmp (x,y):
-    if x + y > y + x:
-        return -1
-    elif x + y == y + x:
-        return 0
-    else:
-        return 1
-
-a = [i.rstrip() for i in sys.stdin]
-a.sort(key=cmp_to_key(cmp))
-
-print(*a, sep='')
+with open('result.txt', 'w') as file:
+    file.write(str(a[N]))
