@@ -1,8 +1,14 @@
-import datetime
+'''three_list = input().split()
+parent_dict = {}
 
+for i, parent in enumerate(three_list):
+    if parent_dict.get(parent) == None:
+        parent_dict[parent] = []
+    parent_dict[parent].append(str(i))
 
-with open('file.txt', 'a') as file:
-    for i in range(1, 301):
-        now = datetime.datetime.now()
-        file.writelines([str(i), ' ' * (4-len(str(i))), str(now.second), ' ' * 2, str(now.microsecond), '\n'])
+print(parent_dict)'''
 
+a = [1,2,3]
+b = a
+a=a+[4]
+print((a==b)*b)
